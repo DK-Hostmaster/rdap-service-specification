@@ -1,7 +1,7 @@
 # DK Hostmaster RDAP Service Specification
 
-2017/03/14
-Revision: 1.0
+2017/03/15
+Revision: 1.0 ~ *DRAFT*
 
 **PLEASE NOTE THAT THIS SERVICE IS CURRENTLY A PROTOTYPE**
 
@@ -64,7 +64,7 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a name="document-history"></a>
 ## Document History
 
-* 1.0 2017-03-14
+* 1.0 2017-03-14 ~ *DRAFT*
   * Initial revision
 
 <a name="the-dk-registry-in-brief"></a>
