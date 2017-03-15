@@ -17,12 +17,13 @@ Revision: 1.0 ~ *DRAFT*
 - [Features](#features)
 - [Implementation Limitations](#implementation-limitations)
     - [Localization](#localization)
-    - [Media-type / Format](#media-type--format)
+    - [Media types / Format](#media-types--format)
     - [Encoding](#encoding)
     - [Rate Limiting](#rate-limiting)
     - [Security](#security)
     - [Authentication](#authentication)
     - [Non-supported APIs](#non-supported-apis)
+    - [Limitations to available entity data](#limitations-to-available-entity-data)
 - [Service](#service)
     - [domain](#domain)
         - [API](#api)
@@ -33,6 +34,10 @@ Revision: 1.0 ~ *DRAFT*
     - [nameserver](#nameserver)
         - [API](#api-2)
         - [Example](#example-2)
+- [References](#references)
+    - [RFCs](#rfcs)
+    - [RDAP](#rdap)
+    - [vCard and jCard](#vcard-and-jcard)
 - [Resources](#resources)
     - [Mailing list](#mailing-list)
     - [Issue Reporting](#issue-reporting)
@@ -46,6 +51,10 @@ Revision: 1.0 ~ *DRAFT*
 # Introduction
 
 This document describes the RDAP service offered by DK Hostmaster A/S. It is primarily aimed at a technical audience and the reader is required to have knowledge of the RDAP protocol.
+
+The RDAP service implementation by DK Hostmaster does not implement all features outlined in the related RFC, this document describes primarily the available features and possible limitations to these and lists the unsupported features.
+
+Please note that all provided data are provided under the disclaimer, included in the response in the `notices` section.
 
 <a name="about-this-document"></a>
 # About this Document
@@ -89,17 +98,19 @@ The RDAP service offers the following features.
 <a name="localization"></a>
 ## Localization
 
-In general the service is not localized and all information is provided in English, address data however represented in a format suitable for use in the DK Hostmaster registry, meaning addresses in Denmark are represented in the local format and addresses based outside Denmark in the international representation if available.
+In general the service is not localized and all information is provided in English. Address data however represented in the format suitable for use in the DK Hostmaster registry, meaning addresses in Denmark are represented in the local format and addresses based outside Denmark in the international representation if available.
 
 For more information on this please refer to the section on contact creation in the [EPP service specification](https://github.com/DK-Hostmaster/epp-service-specification#create-contact).
 
-<a name="media-type--format"></a>
-## Media-type / Format
+<a name="media-types--format"></a>
+## Media types / Format
 
-The service supports the following media-types: 
+The service supports the following media types: 
 
 - `application/json` for JSON
 - `application/rdap+json` also for JSON
+
+Not using any of these media-types, results in the HTTP error code `415`, "Unsupported media type".
 
 <a name="encoding"></a>
 ## Encoding
@@ -115,12 +126,12 @@ The service supports the following encodings:
 
 Currently no rate limiting is implemented
 
-We reserve the right to adjust the rate limit in order ensure quality of service. 
+We reserve the right to adjust/enforce the rate limiting in order ensure quality of service as an operational measure.
 
 <a name="security"></a>
 ## Security
 
-The service is only available under **TLS 1.2**
+The service is only available under: TLS 1.2
 
 <a name="authentication"></a>
 ## Authentication
@@ -138,6 +149,15 @@ The following RDAP capabilities are unsupported by DK Hostmaster.
 - Entity search
 - Nameserver search
 
+<a name="limitations-to-available-entity-data"></a>
+## Limitations to available entity data
+
+As part of the privacy policy, the following data are not necessarily available:
+
+- Name, address and user for users with address protection enabled
+- Email for all users
+- Phonenumbers marked as non-public
+
 <a name="service"></a>
 # Service
 
@@ -154,14 +174,14 @@ The service offers four APIs, one specialized for each entity type:
 
 The service requires that the `Accept` header is specified to be `application/json` or `application/rdap+json`, all of the below examples demonstrates this using the commandline utilities `curl` or `httpie`.
 
-If the header is unspecified, not specified correctly or specified to an unsupported format, the service will error with HTTP status code: `415`
+If the header is unspecified, not specified correctly or specified to an unsupported format, the service will error with HTTP status code: `415` -"Unsupported media type".
 
 ```bash
 $ curl https://rdap.dk-hostmaster.dk/entity/DKHM1-DK 
 "Unsupported Media Type"
 ```
 
-Correct specification using `curl` should be as follows:
+Correct specification using `curl` should read as follows:
 
 ```bash
 > curl --header "Accept: application/json" https://rdap.dk-hostmaster.dk/entity/DKHM1-DK
@@ -176,12 +196,14 @@ $ http https://rdap.dk-hostmaster.dk/handle/DKHM1-DK Accept:'application/json'
 <a name="domain"></a>
 ## domain
 
-This service returns data on a given domain name.
+This service returns data on a given domain name according to the RDAP specification, please see the limitations on entity data, which might apply to the entities listed as part of the response to a domain query request.
+
+The domain name can be specified in UTF-8 or punycode (ASCII).
 
 <a name="api"></a>
 ### API
 
-    https://rdap.dk-hostmaster.dk/domain/{domainname}
+    https://rdap.dk-hostmaster.dk/domain/{domain name}
 
 The service returns `200` if the relevant object is available.
 
@@ -410,10 +432,19 @@ $ curl --header "Accept: application/json" https://rdap.dk-hostmaster.dk/domain/
 
 This service returns data on a given handle/user-id.
 
+This service returns data on a given entity according to the RDAP specification, please see the limitations on entity data, which might apply to the entities included in the response to a entity query request.
+
+The handle is identified by a handle/user-id, the handle holds the format:
+
+- ASCII letters and numbers in upper-case
+- postfixed with the string `-DK`
+
+An example: DKHM1-DK
+
 <a name="api-1"></a>
 ### API
 
-    https://rdap.dk-hostmaster.dk/handle/{userid}
+    https://rdap.dk-hostmaster.dk/handle/{user-id}
 
 | Return Code  | Description |
 | ------------ | ------------ |
@@ -520,12 +551,16 @@ $ curl --header "Accept: application/json" https://rdap.dk-hostmaster.dk/handle/
 <a name="nameserver"></a>
 ## nameserver
 
-This service returns data on a given hostname/nameserver.
+This service returns data on a given .
+
+This service returns data on a given host name/nameserver according to the RDAP specification.
+
+The nameserver name can be specified in UTF-8 or punycode (ASCII).
 
 <a name="api-2"></a>
 ### API
 
-    https://rdap.dk-hostmaster.dk/host/{hostname}
+    https://rdap.dk-hostmaster.dk/nameserver/{hostname}
 
 | Return Code  | Description |
 | ------------ | ------------ |
@@ -607,6 +642,28 @@ $ curl https://rdap.dk-hostmaster.dk/host/auth01.ns.dk-hostmaster.dk | jq
     "unicodeName": "auth01.ns.dk-hostmaster.dk"
 }
 ```
+
+<a name="references"></a>
+# References
+
+<a name="rfcs"></a>
+## RFCs
+
+- [Basic RDAP Demo Client](https://github.com/DK-Hostmaster/rdap-demo-client-mojolicious)
+
+<a name="rdap"></a>
+## RDAP
+
+- [RFC:7480 HTTP Usage in the Registration Data Access Protocol (RDAP)](https://tools.ietf.org/html/rfc7480)
+- [RFC:7482 Registration Data Access Protocol (RDAP) Query Format](https://tools.ietf.org/html/rfc7482)
+- [RFC:7483 JSON Responses for the Registration Data Access Protocol (RDAP)](https://tools.ietf.org/html/rfc7483)
+- [RFC:7484 Finding the Authoritative Registration Data (RDAP) Service](https://tools.ietf.org/html/rfc7484)
+
+<a name="vcard-and-jcard"></a>
+## vCard and jCard
+
+- [RFC:6350 vCard Format Specification](https://tools.ietf.org/html/rfc6350)
+- [RFC:7095 jCard: The JSON Format for vCard](https://tools.ietf.org/html/rfc7095)
 
 <a name="resources"></a>
 # Resources
