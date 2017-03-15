@@ -35,7 +35,6 @@ Revision: 1.0 ~ *DRAFT*
         - [API](#api-2)
         - [Example](#example-2)
 - [References](#references)
-    - [RFCs](#rfcs)
     - [RDAP](#rdap)
     - [vCard and jCard](#vcard-and-jcard)
 - [Resources](#resources)
@@ -645,9 +644,6 @@ $ curl https://rdap.dk-hostmaster.dk/host/auth01.ns.dk-hostmaster.dk | jq
 
 <a name="references"></a>
 # References
-
-<a name="rfcs"></a>
-## RFCs
 
 - [Basic RDAP Demo Client](https://github.com/DK-Hostmaster/rdap-demo-client-mojolicious)
 
