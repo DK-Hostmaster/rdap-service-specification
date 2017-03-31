@@ -94,6 +94,10 @@ The RDAP service offers the following features.
 <a name="implementation-limitations"></a>
 # Implementation Limitations
 
+This section describes the common limitations of the RDAP service,
+
+For limitations to specific capabilities please see the designated sections.
+
 <a name="localization"></a>
 ## Localization
 
@@ -198,6 +202,14 @@ $ http https://rdap.dk-hostmaster.dk/handle/DKHM1-DK Accept:'application/json'
 This service returns data on a given domain name according to the RDAP specification, please see the limitations on entity data, which might apply to the entities listed as part of the response to a domain query request.
 
 The domain name can be specified in UTF-8 or punycode (ASCII).
+
+The status of the domain response is currently limited to:
+
+- `active`
+- `inactive`
+- `pending delete`
+
+These might be extended in the future.
 
 <a name="api"></a>
 ### API
