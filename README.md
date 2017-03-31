@@ -23,12 +23,12 @@ Revision: 1.0 ~ *DRAFT*
     - [Security](#security)
     - [Authentication](#authentication)
     - [Non-supported APIs](#non-supported-apis)
-    - [Limitations to available entity data](#limitations-to-available-entity-data)
 - [Service](#service)
     - [domain](#domain)
         - [API](#api)
         - [Example](#example)
     - [entity](#entity)
+    - [Limitations to available entity data](#limitations-to-available-entity-data)
         - [API](#api-1)
         - [Example](#example-1)
     - [nameserver](#nameserver)
@@ -151,15 +151,6 @@ The following RDAP capabilities are unsupported by DK Hostmaster.
 - Domain search
 - Entity search
 - Nameserver search
-
-<a name="limitations-to-available-entity-data"></a>
-## Limitations to available entity data
-
-As part of the privacy policy, the following data are not necessarily available:
-
-- Name, address and user for users with address protection enabled
-- Email for all users
-- Phonenumbers marked as non-public
 
 <a name="service"></a>
 # Service
@@ -450,11 +441,20 @@ The handle is identified by a handle/user-id, the handle holds the format:
 - ASCII letters and numbers in upper-case
 - postfixed with the string `-DK`
 
+An example: DKHM1-DK
+
 The status of the entity response is currently limited to:
 
 - `validated`
 
-An example: DKHM1-DK
+<a name="limitations-to-available-entity-data"></a>
+## Limitations to available entity data
+
+As part of the privacy policy, the following data are not necessarily available:
+
+- Name, address and user for users with address protection enabled
+- Email for all users
+- Phonenumbers marked as non-public
 
 <a name="api-1"></a>
 ### API
