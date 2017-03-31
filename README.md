@@ -451,7 +451,10 @@ An example: DKHM1-DK
 
 The status of the entity response is currently limited to:
 
+- `active`
 - `validated`
+- `associated`
+- `pending delete`
 
 <a name="limitations-to-available-entity-data"></a>
 ## Limitations to available entity data
