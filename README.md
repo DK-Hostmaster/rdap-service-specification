@@ -22,6 +22,7 @@ Revision: 1.0 ~ *DRAFT*
     - [Rate Limiting](#rate-limiting)
     - [Security](#security)
     - [Authentication](#authentication)
+    - [Event Actors](#event-actors)
     - [Non-supported APIs](#non-supported-apis)
 - [Service](#service)
     - [domain](#domain)
@@ -140,6 +141,11 @@ The service is only available under: TLS 1.2
 ## Authentication
 
 Authentication is currently unsupported and hereby authorization, so only public available data are presented.
+
+<a name="event-actors"></a>
+## Event Actors
+
+Event actors are not currently disclosed.
 
 <a name="non-supported-apis"></a>
 ## Non-supported APIs
