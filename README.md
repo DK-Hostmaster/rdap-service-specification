@@ -450,6 +450,10 @@ The handle is identified by a handle/user-id, the handle holds the format:
 - ASCII letters and numbers in upper-case
 - postfixed with the string `-DK`
 
+The status of the entity response is currently limited to:
+
+- `validated`
+
 An example: DKHM1-DK
 
 <a name="api-1"></a>
