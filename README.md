@@ -671,6 +671,7 @@ $ curl https://rdap.dk-hostmaster.dk/host/auth01.ns.dk-hostmaster.dk | jq
 # References
 
 - [Basic RDAP Demo Client](https://github.com/DK-Hostmaster/rdap-demo-client-mojolicious)
+- [Command line RDAP client](https://github.com/registrobr/rdap-client) implementation in Go
 
 <a name="rdap"></a>
 ## RDAP
