@@ -735,6 +735,3 @@ The services hold their own table of return codes, this is just a curated list t
 [RFC:5890]: https://tools.ietf.org/html/rfc5890
 [RFC:6350]: https://tools.ietf.org/html/rfc6350
 [RFC:7095]: https://tools.ietf.org/html/rfc7095
-
-
-
