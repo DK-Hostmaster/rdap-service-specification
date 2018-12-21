@@ -34,7 +34,7 @@ Revision: 1.0 ~ *DRAFT*
   - [Limitations to available entity data](#limitations-to-available-entity-data)
     - [API](#api-1)
     - [Example](#example-1)
-  - [nameserver](#nameserver)
+  - [name server](#name-server)
     - [API](#api-2)
     - [Example](#example-2)
 - [References](#references)
@@ -65,7 +65,7 @@ This specification describes version 1 (1.0.x) of the DK Hostmaster RDAP service
 The document describes the current DK Hostmaster RDAP service implementation, for more general documentation on the used protocols and additional information please refer to the RFCs and additional resources in the References and Resources chapters below.
 Any future extensions and possible additions and changes to the implementation are not within the scope of this document and will not be discussed or mentioned throughout this document.
 
-Printable version can be obtained via [this link](https://gitprint.com/DK-Hostmaster/rdap-service-specification/blob/master/README.md), using the gitprint service.
+Printable version can be obtained via [this link](https://gitprint.com/DK-Hostmaster/rdap-service-specification/blob/master/README.md), using the **gitprint** service.
 
 <a id="license"></a>
 ## License
@@ -89,7 +89,7 @@ DK Hostmaster is the registry for the ccTLD for Denmark (dk). The current model 
 The RDAP service offers the following features.
 
 - Domain name inquiry
-- Nameserver inquiry
+- Name server inquiry
 - Entity inquiry
 - Support for multiple encodings (see: [Encoding](#encoding) below)
 - Support for both IPv6 and IPv6
@@ -124,7 +124,7 @@ Not using any of these media-types, results in the HTTP error code `415`, "Unsup
 The service supports the following encodings:
 
 - UTF-8, being the primary encoding used
-- Punycode [RFC:3492][RFC:3492], please see the specific APIs for information on use of this encoding. This is solely used representing IDN domain names and nameserver names under IDN domain names
+- Punycode [RFC:3492][RFC:3492], please see the specific APIs for information on use of this encoding. This is solely used representing IDN domain names and name server names under IDN domain names
 - URI encoding [RFC:3986][RFC:3986], this is not a part of the RDAP standard, but it is supported for transparency and client support
 
 <a id="rate-limiting"></a>
@@ -158,7 +158,7 @@ The following RDAP capabilities are unsupported by DK Hostmaster.
 - IP query
 - Domain search
 - Entity search
-- Nameserver search
+- Name server search
 
 <a id="service"></a>
 # Service
@@ -169,12 +169,12 @@ The service is available at:
 
 The service offers four APIs, one specialized for each entity type:
 
-- domain (domainname)
-- nameserver (hostname/nameserver)
+- domain (domain name)
+- name server (hostname/name server)
 - entity (userid)
 - help
 
-The service requires that the `Accept` header is specified to be `application/json` or `application/rdap+json`, all of the below examples demonstrates this using the commandline utilities `curl` or `httpie`.
+The service requires that the `Accept` header is specified to be `application/json` or `application/rdap+json`, all of the below examples demonstrates this using the command line utilities `curl` or `httpie`.
 
 If the header is unspecified, not specified correctly or specified to an unsupported format, the service will error with HTTP status code: `415` -"Unsupported media type".
 
@@ -465,7 +465,7 @@ As part of the privacy policy, the following data are not necessarily available:
 
 - Name, address and user for users with address protection enabled
 - Email for all users
-- Phonenumbers marked as non-public
+- Phone numbers marked as non-public
 
 <a id="api-1"></a>
 ### API
@@ -574,14 +574,14 @@ $ curl --header "Accept: application/json" https://rdap.dk-hostmaster.dk/handle/
 }
 ```
 
-<a id="nameserver"></a>
-## nameserver
+<a id="name-server"></a>
+## name server
 
 This service returns data on a given .
 
-This service returns data on a given host name/nameserver according to the RDAP specification.
+This service returns data on a given host name/name server according to the RDAP specification.
 
-The nameserver name can be specified in UTF-8 or punycode (ASCII).
+The name server name can be specified in UTF-8 or punycode (ASCII).
 
 <a id="api-2"></a>
 ### API
