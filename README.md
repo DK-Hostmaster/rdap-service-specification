@@ -49,7 +49,6 @@ Revision: 1.0 ~ *DRAFT*
 
 <!-- /MarkdownTOC -->
 
-<a name="introduction"></a>
 <a id="introduction"></a>
 # Introduction
 
@@ -59,7 +58,6 @@ The RDAP service implementation by DK Hostmaster does not implement all features
 
 Please note that all provided data are provided under the disclaimer, included in the response in the `notices` section.
 
-<a name="about-this-document"></a>
 <a id="about-this-document"></a>
 # About this Document
 
@@ -69,26 +67,22 @@ Any future extensions and possible additions and changes to the implementation a
 
 Printable version can be obtained via [this link](https://gitprint.com/DK-Hostmaster/rdap-service-specification/blob/master/README.md), using the gitprint service.
 
-<a name="license"></a>
 <a id="license"></a>
 ## License
 
 This document is copyright by DK Hostmaster A/S and is licensed under the MIT License, please see the separate LICENSE file for details.
 
-<a name="document-history"></a>
 <a id="document-history"></a>
 ## Document History
 
-* 1.0 2017-03-14 ~ *DRAFT*
-  * Initial revision
+- 1.0 2017-03-14 ~ *DRAFT*
+  - Initial revision
 
-<a name="the-dk-registry-in-brief"></a>
 <a id="the-dk-registry-in-brief"></a>
 # The .dk Registry in Brief
 
 DK Hostmaster is the registry for the ccTLD for Denmark (dk). The current model used in Denmark is based on a sole registry, with DK Hostmaster maintaining the central DNS registry.
 
-<a name="features"></a>
 <a id="features"></a>
 # Features
 
@@ -100,7 +94,6 @@ The RDAP service offers the following features.
 - Support for multiple encodings (see: [Encoding](#encoding) below)
 - Support for both IPv6 and IPv6
 
-<a name="implementation-limitations"></a>
 <a id="implementation-limitations"></a>
 # Implementation Limitations
 
@@ -108,7 +101,6 @@ This section describes the common limitations of the RDAP service,
 
 For limitations to specific capabilities please see the designated sections.
 
-<a name="localization"></a>
 <a id="localization"></a>
 ## Localization
 
@@ -116,7 +108,6 @@ In general the service is not localized and all information is provided in Engli
 
 For more information on this please refer to the section on contact creation in the [EPP service specification](https://github.com/DK-Hostmaster/epp-service-specification#create-contact).
 
-<a name="media-types--format"></a>
 <a id="media-types--format"></a>
 ## Media types / Format
 
@@ -127,7 +118,6 @@ The service supports the following media types:
 
 Not using any of these media-types, results in the HTTP error code `415`, "Unsupported media type".
 
-<a name="encoding"></a>
 <a id="encoding"></a>
 ## Encoding
 
@@ -137,7 +127,6 @@ The service supports the following encodings:
 - Punycode [RFC:3492][RFC:3492], please see the specific APIs for information on use of this encoding. This is solely used representing IDN domain names and nameserver names under IDN domain names
 - URI encoding [RFC:3986][RFC:3986], this is not a part of the RDAP standard, but it is supported for transparency and client support
 
-<a name="rate-limiting"></a>
 <a id="rate-limiting"></a>
 ## Rate Limiting
 
@@ -145,25 +134,21 @@ Currently no rate limiting is implemented
 
 We reserve the right to adjust/enforce the rate limiting in order ensure quality of service as an operational measure.
 
-<a name="security"></a>
 <a id="security"></a>
 ## Security
 
 The service is only available under: TLS 1.2
 
-<a name="authentication"></a>
 <a id="authentication"></a>
 ## Authentication
 
 Authentication is currently unsupported and hereby authorization, so only public available data are presented.
 
-<a name="event-actors"></a>
 <a id="event-actors"></a>
 ## Event Actors
 
 Event actors are not currently disclosed.
 
-<a name="non-supported-apis"></a>
 <a id="non-supported-apis"></a>
 ## Non-supported APIs
 
@@ -175,7 +160,6 @@ The following RDAP capabilities are unsupported by DK Hostmaster.
 - Entity search
 - Nameserver search
 
-<a name="service"></a>
 <a id="service"></a>
 # Service
 
@@ -211,7 +195,6 @@ And for `httpie`:
 $ http https://rdap.dk-hostmaster.dk/handle/DKHM1-DK Accept:'application/json'
 ```
 
-<a name="domain"></a>
 <a id="domain"></a>
 ## domain
 
@@ -227,7 +210,6 @@ The status of the domain response is currently limited to:
 
 These might be extended in the future.
 
-<a name="api"></a>
 <a id="api"></a>
 ### API
 
@@ -242,7 +224,6 @@ The service returns `200` if the relevant object is available.
 | `404` | Object not found |
 | `415` | Unsupported media type |
 
-<a name="example"></a>
 <a id="example"></a>
 ### Example
 
@@ -456,7 +437,6 @@ $ curl --header "Accept: application/json" https://rdap.dk-hostmaster.dk/domain/
 }
 ```
 
-<a name="entity"></a>
 <a id="entity"></a>
 ## entity
 
@@ -478,7 +458,6 @@ The status of the entity response is currently limited to:
 - `associated`
 - `pending delete`
 
-<a name="limitations-to-available-entity-data"></a>
 <a id="limitations-to-available-entity-data"></a>
 ## Limitations to available entity data
 
@@ -488,7 +467,6 @@ As part of the privacy policy, the following data are not necessarily available:
 - Email for all users
 - Phonenumbers marked as non-public
 
-<a name="api-1"></a>
 <a id="api-1"></a>
 ### API
 
@@ -501,7 +479,6 @@ As part of the privacy policy, the following data are not necessarily available:
 | `404` | Object not found |
 | `415` | Unsupported media type |
 
-<a name="example-1"></a>
 <a id="example-1"></a>
 ### Example
 
@@ -597,7 +574,6 @@ $ curl --header "Accept: application/json" https://rdap.dk-hostmaster.dk/handle/
 }
 ```
 
-<a name="nameserver"></a>
 <a id="nameserver"></a>
 ## nameserver
 
@@ -607,7 +583,6 @@ This service returns data on a given host name/nameserver according to the RDAP 
 
 The nameserver name can be specified in UTF-8 or punycode (ASCII).
 
-<a name="api-2"></a>
 <a id="api-2"></a>
 ### API
 
@@ -620,7 +595,6 @@ The nameserver name can be specified in UTF-8 or punycode (ASCII).
 | `404` | Object not found |
 | `415` | Unsupported media type |
 
-<a name="example-2"></a>
 <a id="example-2"></a>
 ### Example
 
@@ -695,14 +669,12 @@ $ curl https://rdap.dk-hostmaster.dk/host/auth01.ns.dk-hostmaster.dk | jq
 }
 ```
 
-<a name="references"></a>
 <a id="references"></a>
 # References
 
 - [Basic RDAP Demo Client](https://github.com/DK-Hostmaster/rdap-demo-client-mojolicious)
 - [Command line RDAP client](https://github.com/registrobr/rdap-client) implementation in Go
 
-<a name="rdap"></a>
 <a id="rdap"></a>
 ## RDAP
 
@@ -711,48 +683,41 @@ $ curl https://rdap.dk-hostmaster.dk/host/auth01.ns.dk-hostmaster.dk | jq
 - [RFC:7483 JSON Responses for the Registration Data Access Protocol (RDAP)](https://tools.ietf.org/html/rfc7483)
 - [RFC:7484 Finding the Authoritative Registration Data (RDAP) Service](https://tools.ietf.org/html/rfc7484)
 
-<a name="vcard-and-jcard"></a>
 <a id="vcard-and-jcard"></a>
 ## vCard and jCard
 
 - [RFC:6350 vCard Format Specification](https://tools.ietf.org/html/rfc6350)
 - [RFC:7095 jCard: The JSON Format for vCard](https://tools.ietf.org/html/rfc7095)
 
-<a name="resources"></a>
 <a id="resources"></a>
 # Resources
 
 Resources for DK Hostmaster RDAP support can be found below.
 
-<a name="mailing-list"></a>
 <a id="mailing-list"></a>
 ## Mailing list
 
 DK Hostmaster operates a mailing list for discussion and inquiries  about the DK Hostmaster RDAP service. To subscribe to this list, write to the address below and follow the instructions. Please note that the list is for technical discussion only, any issues beyond the technical scope will not be responded to, please send these to the contact issue reporting address below and they will be passed on to the appropriate entities within DK Hostmaster A/S.
 
-* `tech-discuss+subscribe@liste.dk-hostmaster.dk`
+- `tech-discuss+subscribe@liste.dk-hostmaster.dk`
 
-<a name="issue-reporting"></a>
 <a id="issue-reporting"></a>
 ## Issue Reporting
 
 For issue reporting related to this specification, the RDAP implementation or the production environment, please contact us.  You are of course welcome to post these to the mailing list mentioned above, otherwise use the address specified below:
 
- * `info@dk-hostmaster.dk`
+- `info@dk-hostmaster.dk`
 
-<a name="additional-information"></a>
 <a id="additional-information"></a>
 ## Additional Information
 
 The DK Hostmaster website service page
 
-  * `https://www.dk-hostmaster.dk/en/rdap`
+- `https://www.dk-hostmaster.dk/en/rdap`
 
-<a name="appendices"></a>
 <a id="appendices"></a>
 # Appendices
 
-<a name="http-status-codes"></a>
 <a id="http-status-codes"></a>
 ## HTTP Status Codes
 
