@@ -213,7 +213,9 @@ These might be extended in the future.
 <a id="api"></a>
 ### API
 
-    https://rdap.dk-hostmaster.dk/domain/{domain name}
+```
+https://rdap.dk-hostmaster.dk/domain/{domain name}
+```
 
 The service returns `200` if the relevant object is available.
 
@@ -470,7 +472,9 @@ As part of the privacy policy, the following data are not necessarily available:
 <a id="api-1"></a>
 ### API
 
-    https://rdap.dk-hostmaster.dk/handle/{user-id}
+```
+https://rdap.dk-hostmaster.dk/handle/{user-id}
+```
 
 | Return Code  | Description |
 | ------------ | ------------ |
@@ -586,7 +590,9 @@ The name server name can be specified in UTF-8 or punycode (ASCII).
 <a id="api-2"></a>
 ### API
 
-    https://rdap.dk-hostmaster.dk/nameserver/{hostname}
+```
+https://rdap.dk-hostmaster.dk/nameserver/{hostname}
+```
 
 | Return Code  | Description |
 | ------------ | ------------ |
