@@ -2,7 +2,8 @@
 
 # DK Hostmaster RDAP Service Specification
 
-![GitHub Workflow build status badge markdownlint](https://github.com/DK-Hostmaster/rdap-service-specification/workflows/Markdownlint%20Workflow/badge.svg)
+![Markdownlint Action](https://github.com/DK-Hostmaster/rdap-service-specification/workflows/Markdownlint%20Action/badge.svg)
+![Spellcheck Action](https://github.com/DK-Hostmaster/rdap-service-specification/workflows/Spellcheck%20Action/badge.svg)
 
 2017/03/15
 Revision: 1.0 ~ *DRAFT*
